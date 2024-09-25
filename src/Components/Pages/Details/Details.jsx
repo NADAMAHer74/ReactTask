@@ -16,7 +16,7 @@ const Details = () => {
     dispatch(fetchPostAndCommentsById({ id })).then(() => {
       setLoading(false);
     });
-  }, [,]);
+  }, []);
 
   if (loading) {
     return <div className="loader"></div>; // Show loading message

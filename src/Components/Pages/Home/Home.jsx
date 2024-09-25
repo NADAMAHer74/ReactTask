@@ -8,7 +8,12 @@ import {
 } from "../../../APIs/postsApis";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrashAlt, faAdd } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faTrashAlt,
+  faAdd,
+  faEye,
+} from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import UpdateModal from "./UpdateModal";
 import { Link } from "react-router-dom";
@@ -132,6 +137,7 @@ function Home() {
                         className="btn btn-success"
                         to={`/details/${post.id}`}
                       >
+                        <FontAwesomeIcon icon={faEye} />
                         Details
                       </Link>
                     </div>

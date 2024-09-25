@@ -13,7 +13,7 @@ export const postsSlice = createSlice({
   initialState: {
     posts: [],
     post: { title: "", body: "" },
-    postComments: [],
+    comments: [],
     setLoading: true,
     setError: false,
   },
@@ -45,8 +45,8 @@ export const postsSlice = createSlice({
     });
 
     builder.addCase(fetchPostAndCommentsById.fulfilled, (state, action) => {
-      state.postComments = action.payload;
-      state.post = action.payload;
+      state.post = action.payload.post;
+      state.comments = action.payload.comments;
       state.setLoading = false;
     });
   },

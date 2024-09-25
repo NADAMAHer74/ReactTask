@@ -33,10 +33,8 @@ export const fetchPostAndCommentsById = createAsyncThunk(
   "posts/fetchPostAndCommentsById",
   async ({ id }) => {
     const postResponse = await axios.get(`${BASE_URL}/${id}`);
-    const commentsResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/comments?postId=1/${id}`
-    );
+    const commentsResponse = await axios.get(`${BASE_URL}/${id}/comments`);
 
-    return postResponse.data, commentsResponse.data;
+    return { post: postResponse.data, comments: commentsResponse.data };
   }
 );

@@ -37,13 +37,6 @@ export const fetchPostAndCommentsById = createAsyncThunk(
       `https://jsonplaceholder.typicode.com/comments?postId=1/${id}`
     );
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    // const data = await response.json();
-    // console.log("API Response:", data);
-    // return data;
-
     return postResponse.data, commentsResponse.data;
   }
 );

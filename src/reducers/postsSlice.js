@@ -4,7 +4,7 @@ import {
   addPost,
   updatePost,
   deletePost,
-  fetchPostById,
+  fetchPostAndCommentsById,
 } from "../APIs/postsApis";
 
 export const postsSlice = createSlice({
@@ -13,6 +13,7 @@ export const postsSlice = createSlice({
   initialState: {
     posts: [],
     post: { title: "", body: "" },
+    postComments: [],
     setLoading: true,
     setError: false,
   },
@@ -43,9 +44,10 @@ export const postsSlice = createSlice({
       state.posts = state.posts.filter((post) => post.id !== action.payload);
     });
 
-    builder.addCase(fetchPostById.fulfilled, (state, action) => {
+    builder.addCase(fetchPostAndCommentsById.fulfilled, (state, action) => {
+      state.postComments = action.payload;
       state.post = action.payload;
-      state.loading = false;
+      state.setLoading = false;
     });
   },
 });

@@ -29,10 +29,13 @@ export const deletePost = createAsyncThunk(
   }
 );
 
-export const fetchPostById = createAsyncThunk(
-  "posts/fetchPostById",
+export const fetchPostAndCommentsById = createAsyncThunk(
+  "posts/fetchPostAndCommentsById",
   async ({ id }) => {
-    const response = await axios.get(`${BASE_URL}/${id}`);
+    const postResponse = await axios.get(`${BASE_URL}/${id}`);
+    const commentsResponse = await axios.get(
+      `https://jsonplaceholder.typicode.com/comments?postId=1/${id}`
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -41,6 +44,6 @@ export const fetchPostById = createAsyncThunk(
     // console.log("API Response:", data);
     // return data;
 
-    return response.data;
+    return postResponse.data, commentsResponse.data;
   }
 );
